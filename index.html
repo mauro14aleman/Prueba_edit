@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Historia de Amor ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe3e3 0%, #fbc2eb 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Contenedor de las diapositivas */
+        .slider-container {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.6s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        /* Estilos de Multimedia */
+        .slide-media {
+            width: 100%;
+            max-height: 60%;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+            background-color: #ddd; /* Fondo provisional si no encuentra la foto */
+        }
+
+        h2 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #4a4a4a;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* Botones de Navegación */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(214, 51, 132, 0.2);
+            border: none;
+            color: #d63384;
+            font-size: 2rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(214, 51, 132, 0.6);
+            color: white;
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* Indicador de progreso (puntos abajo) */
+        .dots-container {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(214, 51, 132, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #d63384;
+            transform: scale(1.2);
+        }
+
+        /* Corazones flotantes de fondo */
+        .heart-bg {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(214, 51, 132, 0.15);
+            animation: float 4s infinite linear;
+            z-index: 0;
+            bottom: -50px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-bg" style="left: 10%; animation-duration: 6s;">❤️</div>
+    <div class="heart-bg" style="left: 30%; animation-duration: 4s; animation-delay: 2s;">💖</div>
+    <div class="heart-bg" style="left: 70%; animation-duration: 5s; animation-delay: 1s;">❤️</div>
+    <div class="heart-bg" style="left: 85%; animation-duration: 7s; animation-delay: 3s;">💕</div>
+
+    <div class="slider-container">
+        <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+
+        <div class="slide active">
+            <img class="slide-media" src="fotos/foto1.jpg" alt="Nuestro inicio">
+            <h2>El comienzo de todo ❤️</h2>
+            <p>Aquí es donde nuestra hermosa historia empezó. Cada segundo a tu lado ha sido mágico.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto2.jpg" alt="Momento especial">
+            <h2>Tus sonrisas favoritas ✨</h2>
+            <p>Amo ver la felicidad en tu rostro, es mi motor de todos los días.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto3.jpg" alt="Aventura juntos">
+            <h2>Nuestras Locuras 🚗</h2>
+            <p>No importa el lugar, si es contigo, sé que será la mejor aventura de mi vida.</p>
+        </div>
+
+        <div class="slide">
+            <video class="slide-media" controls>
+                <source src="videos/video1.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+            <h2>Un momento inolvidable 🎥</h2>
+            <p>Los videos guardan risas que quiero recordar para siempre.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto4.jpg" alt="Detalle">
+            <h2>Cómplices de vida 🤝</h2>
+            <p>Más que mi pareja, eres mi mejor amigo/a y mi lugar seguro en el mundo.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto5.jpg" alt="Abrazos">
+            <h2>Tus abrazos... 🫂</h2>
+            <p>Ese rincón exacto donde el mundo exterior deja de importar y todo está bien.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto6.jpg" alt="Atardecer">
+            <h2>Mil atardeceres contigo 🌅</h2>
+            <p>Quiero coleccionar millones de vistas hermosas, pero siempre mirándote a ti.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto7.jpg" alt="Logros">
+            <h2>Apoyo Incondicional 🎯</h2>
+            <p>Celebrar tus éxitos y levantarte en tus días grises es mi promesa favorita.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto8.jpg" alt="Miradas">
+            <h2>En tus ojos lo veo todo 👀</h2>
+            <p>Una mirada tuya basta para saber que estoy en el lugar correcto.</p>
+        </div>
+
+        <div class="slide">
+            <video class="slide-media" controls>
+                <source src="videos/video2.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+            <h2>Nuestra melodía favorita 🎵</h2>
+            <p>Cada risa compartida es la mejor canción que he escuchado jamás.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto9.jpg" alt="Futuro">
+            <h2>Construyendo un futuro 🏡</h2>
+            <p>Cada paso que damos hoy es un bloque para los sueños que compartimos.</p>
+        </div>
+
+        <div class="slide">
+            <img class="slide-media" src="fotos/foto10.jpg" alt="Te amo">
+            <h2>Por siempre tú y yo ♾️</h2>
+            <p>Gracias por ser tú, por amarme así y por hacer mi vida infinitamente más bonita. ¡Te amo!</p>
+        </div>
+
+        <div class="dots-container" id="dotsContainer"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('dotsContainer');
+
+        // Crear los puntos dinámicamente según el número de diapositivas
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+                
+                // Pausar videos si se cambia de diapositiva
+                const video = slide.querySelector('video');
+                if (video) video.pause();
+            });
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            updateSlides();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlides();
+        }
+    </script>
+</body>
+</html>
